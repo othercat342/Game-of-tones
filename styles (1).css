@@ -1,0 +1,76 @@
+:root{
+  --ink:#101326; --panel:#1b2040; --line:#2d3466;
+  --text:#eceeff; --muted:#a6abd6;
+  --lemon:#ffd23f; --sky:#7bdff2; --accent:var(--lemon);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font:1.1rem/1.65 "Newsreader",Georgia,serif}
+h1,h2,h3,.brand,.tabs button{font-family:"Bricolage Grotesque",system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding:1rem clamp(1rem,5vw,4rem);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--ink);z-index:5}
+.brand{font-weight:800;font-size:1.5rem;text-decoration:none;color:var(--lemon)}
+nav{display:flex;gap:1.2rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--text)}
+
+main{max-width:68rem;margin:0 auto;padding:0 clamp(1rem,5vw,2rem)}
+.hero{padding:clamp(3rem,10vw,7rem) 0 3rem}
+.hero h1{font-size:clamp(2.6rem,8vw,5.5rem);line-height:1;margin:0 0 1.2rem;font-weight:800;letter-spacing:-.03em;max-width:14ch}
+.hero p{max-width:40rem;color:var(--muted);font-size:1.25rem}
+
+.block{padding:3rem 0;border-top:1px solid var(--line)}
+.block h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 .5rem;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:42rem;margin:0 0 1.8rem}
+
+.notes{list-style:none;margin:0 0 2rem;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(5.5rem,1fr));gap:.7rem}
+.notes li{background:var(--panel);border-radius:.9rem;padding:1rem .5rem;text-align:center}
+.notes b{display:block;font:800 2rem "Bricolage Grotesque",sans-serif;color:var(--lemon)}
+.notes span{color:var(--muted);font-size:.95rem}
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.tips article{border-left:3px solid var(--sky);padding:.2rem 0 .2rem 1rem}
+.tips h3{margin:0 0 .3rem;font-size:1.15rem}
+.tips p{margin:0;color:var(--muted)}
+kbd{background:var(--panel);border:1px solid var(--line);border-radius:.3rem;padding:.05rem .4rem;font-size:.9em}
+
+.piano{position:relative;display:flex;height:11rem;max-width:36rem;touch-action:manipulation;user-select:none}
+.key{flex:1;background:#f4f5ff;border:1px solid #9096c8;border-radius:0 0 .5rem .5rem;color:#2a2f5c;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.5rem;font:500 .85rem "Bricolage Grotesque",sans-serif;cursor:pointer}
+.key.black{position:absolute;top:0;width:8%;height:62%;background:#15183a;border-color:#000;color:#fff;z-index:2;transform:translateX(-50%)}
+.key.on{background:var(--lemon);color:#000}
+.key.black.on{background:var(--sky)}
+.played{color:var(--muted);min-height:1.7em;margin:1rem 0 0}
+
+.tabs{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.tabs button{border:2px solid var(--line);background:transparent;color:var(--text);padding:.6rem 1.1rem;border-radius:2rem;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s}
+.tabs button:hover{border-color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#101326}
+
+.artist{display:grid;grid-template-columns:minmax(0,18rem) 1fr;gap:2.5rem;align-items:start}
+.vinyl-wrap{display:flex;justify-content:center}
+.vinyl{width:min(100%,18rem);aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#0a0b17 0 3px,#171a33 3px 5px);display:grid;place-items:center;box-shadow:0 0 0 2px var(--line)}
+.vinyl.spin{animation:spin 3.5s linear infinite}
+.vinyl .label{width:36%;aspect-ratio:1;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px #0a0b17;transition:background .3s}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.bio h3{font-size:2rem;margin:0;letter-spacing:-.02em}
+.bio .meta{color:var(--accent);margin:.2rem 0 1rem;font-weight:500}
+.bio p{max-width:40rem;margin:0 0 1rem}
+.bio .empty{color:var(--muted)}
+.player{margin-top:2rem}
+.player .now{color:var(--muted);margin:0 0 .7rem}
+.player iframe{width:100%;max-width:40rem;aspect-ratio:16/9;border:0;border-radius:.8rem;background:#000}
+.btn{display:inline-block;background:var(--accent);color:#101326;padding:.7rem 1.2rem;border-radius:2rem;text-decoration:none;font:800 1rem "Bricolage Grotesque",sans-serif}
+
+footer{text-align:center;color:var(--muted);padding:3rem 1rem;border-top:1px solid var(--line);font-size:.95rem}
+
+@media(max-width:700px){
+  nav{display:none}
+  .artist{grid-template-columns:1fr;gap:1.5rem}
+  .vinyl{width:11rem}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .vinyl.spin{animation:none}
+}
