@@ -1,74 +1,47 @@
 /* ===== Menú hamburguesa + navegación por slots ===== */
-
 const burger = document.getElementById("burger");
 const drawer = document.getElementById("drawer");
 const scrim = document.getElementById("scrim");
-
 const slots = [...document.querySelectorAll("section[data-slot]")];
 const links = [...drawer.querySelectorAll("a")];
 
 function toggleMenu(open) {
   drawer.classList.toggle("open", open);
   scrim.classList.toggle("open", open);
-
-  burger.setAttribute("aria-expanded", String(open));
-  burger.setAttribute(
-    "aria-label",
-    open ? "Cerrar menú" : "Abrir menú"
-  );
+  burger.setAttribute("aria-expanded", open);
+  burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
 }
 
-/**
- * Muestra el slot solicitado.
- *
- * Ejemplo:
- * #inicio    -> sección id="inicio"
- * #notas     -> sección id="notas"
- * #piano     -> sección id="piano-slot"
- * #artistas  -> sección id="artistas"
- */
 function showSlot(name) {
-  // Si no se especifica ningún slot, mostramos inicio.
-  if (!name) {
-    name = "inicio";
-  }
-
-  // El slot "piano" utiliza el id "piano-slot".
-  const targetId = name === "piano" ? "piano-slot" : name;
-
-  // Comprobamos que la sección realmente exista.
-  const target = document.getElementById(targetId);
-
-  // Si el slot no existe, volvemos a inicio.
-  if (!target || !target.matches("section[data-slot]")) {
-    name = "inicio";
-  }
-
-  const finalTargetId = name === "piano" ? "piano-slot" : name;
-
-  // Ocultamos todos los slots excepto el seleccionado.
-  slots.forEach(slot => {
-    slot.hidden = slot.id !== finalTargetId;
+  // "piano" apunta a la sección con id "piano-slot"
+  const id = name === "piano" ? "piano-slot" : name;
+  const target = document.getElementById(id) ? id : "inicio";
+  const key = target === "piano-slot" ? "piano" : target;
+  slots.forEach(s => (s.hidden = s.id !== target));
+  links.forEach(a => {
+    if (a.getAttribute("href") === "#" + key) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
   });
+  document.body.dataset.slot = key;
+  // fuera de Artistas siempre vuelve el color de bienvenida
+  if (key !== "artistas") document.documentElement.style.removeProperty("--accent");
+  window.scrollTo({ top: 0 });
+  document.dispatchEvent(new CustomEvent("slotchange", { detail: key }));
+}
 
-  // Actualizamos el estado visual del menú.
-  links.forEach(link => {
-    const href = link.getAttribute("href");
+burger.addEventListener("click", () => toggleMenu(!drawer.classList.contains("open")));
+scrim.addEventListener("click", () => toggleMenu(false));
+document.addEventListener("keydown", e => { if (e.key === "Escape") toggleMenu(false); });
 
-    // Piano tiene una diferencia entre el href y el id de la sección.
-    const linkSlot = href ? href.slice(1) : "";
+// Cualquier enlace interno (menú, logo o botones) cambia de slot
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  e.preventDefault();
+  const name = a.getAttribute("href").slice(1);
+  history.replaceState(null, "", "#" + name);
+  showSlot(name);
+  toggleMenu(false);
+});
 
-    if (linkSlot === name) {
-      link.setAttribute("aria-current", "page");
-    } else {
-      link.removeAttribute("aria-current");
-    }
-  });
-
-  // Guardamos el slot actual en el body.
-  document.body.dataset.slot = name;
-
-  // Fuera de artistas eliminamos el color personalizado.
-  if (name !== "artistas") {
-    document.documentElement.style.removeProperty("--acce
-
+showSlot(location.hash.slice(1) || "inicio");
