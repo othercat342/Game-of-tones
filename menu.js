@@ -1,43 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const navMenu = document.getElementById('nav-menu');
-    const menuLinks = document.querySelectorAll('.nav-menu a');
-    const views = document.querySelectorAll('.view');
+/* ===== Menú hamburguesa + navegación por slots ===== */
+const burger = document.getElementById("burger");
+const drawer = document.getElementById("drawer");
+const scrim = document.getElementById("scrim");
+const slots = [...document.querySelectorAll("[data-slot]")];
+const links = [...drawer.querySelectorAll("a")];
 
-    // 1. Abrir / Cerrar menú hamburguesa en pantallas pequeñas
-    if (hamburgerBtn && navMenu) {
-        hamburgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-    }
+function toggleMenu(open) {
+  drawer.classList.toggle("open", open);
+  scrim.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", open);
+  burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+}
 
-    // 2. Función global para cambiar entre vistas/secciones
-    window.switchView = function(targetId) {
-        views.forEach(view => {
-            if (view.id === targetId) {
-                view.style.display = 'block';
-                view.classList.add('active');
-            } else {
-                view.style.display = 'none';
-                view.classList.remove('active');
-            }
-        });
-    };
+function showSlot(name) {
+  // "piano" apunta a la sección con id "piano-slot"
+  const id = name === "piano" ? "piano-slot" : name;
+  const target = document.getElementById(id) ? id : "inicio";
+  const key = target === "piano-slot" ? "piano" : target;
+  slots.forEach(s => (s.hidden = s.id !== target));
+  links.forEach(a => {
+    if (a.getAttribute("href") === "#" + key) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
+  document.body.dataset.slot = key;
+  // fuera de Artistas siempre vuelve el color de bienvenida
+  if (key !== "artistas") document.documentElement.style.removeProperty("--accent");
+  window.scrollTo({ top: 0 });
+  document.dispatchEvent(new CustomEvent("slotchange", { detail: key }));
+}
 
-    // 3. Manejar clics en los slots del menú hamburguesa
-    menuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita comportamiento por defecto del enlace
-            const target = link.getAttribute('data-target');
-            
-            if (target) {
-                switchView(target);
-            }
+burger.addEventListener("click", () => toggleMenu(!drawer.classList.contains("open")));
+scrim.addEventListener("click", () => toggleMenu(false));
+document.addEventListener("keydown", e => { if (e.key === "Escape") toggleMenu(false); });
 
-            // Ocultar el menú hamburguesa después de hacer clic (útil en móviles)
-            if (navMenu) {
-                navMenu.classList.remove('active');
-            }
-        });
-    });
+// Cualquier enlace interno (menú, logo o botones) cambia de slot
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  e.preventDefault();
+  const name = a.getAttribute("href").slice(1);
+  history.replaceState(null, "", "#" + name);
+  showSlot(name);
+  toggleMenu(false);
 });
+
+showSlot(location.hash.slice(1) || "inicio");
