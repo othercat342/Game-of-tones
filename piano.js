@@ -55,4 +55,3 @@ document.addEventListener("keydown", e => {
   const hitKey = keyEls[e.key.toLowerCase()];
   if (hitKey) hit(hitKey.key);
 });
-
