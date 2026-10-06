@@ -71,4 +71,4 @@ function showSlot(name) {
   // Fuera de artistas eliminamos el color personalizado.
   if (name !== "artistas") {
     document.documentElement.style.removeProperty("--acce
-```
+
