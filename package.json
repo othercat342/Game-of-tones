@@ -1,7 +1,7 @@
 {
   "name": "game-of-tones",
   "version": "1.0.0",
-  "description": "Servidor backend para Game of Tones",
+  "description": "Servidor para Game of Tones",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
