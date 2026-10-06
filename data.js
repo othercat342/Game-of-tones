@@ -13,7 +13,7 @@ const ARTISTS = [
     ],
     album: "Raro (2006)",
     song: "Yendo a la casa de Damián",
-    ytId: "https://youtu.be/K7XcO81TckU?si=r11ohcvhIV66Di5v"
+    ytId: "https://www.youtube.com/watch?v=K7XcO81TckU&list=RDK7XcO81TckU&start_radio=1"
   },
   {
     name: "Indio Solari",
@@ -26,7 +26,7 @@ const ARTISTS = [
     ],
     album: "Un baión para el ojo idiota (1988)",
     song: "Ji ji ji",
-    ytId: "https://youtu.be/tVvTDVswTxQ?si=_LD_n3KeMgXt0FSf"
+    ytId: "https://www.youtube.com/watch?v=tVvTDVswTxQ&list=RDtVvTDVswTxQ&start_radio=1"
   },
   {
     name: "Milo J",
@@ -39,7 +39,7 @@ const ARTISTS = [
     ],
     album: "La vida era más corta (2023)",
     song: "Jangadero",
-    ytId: "https://youtu.be/NCmb43DcH6M?si=gog3mzXOwfyCLA-U"
+    ytId: "https://www.youtube.com/watch?v=NCmb43DcH6M&list=RDNCmb43DcH6M&start_radio=1"
   },
   {
     name: "Callejeros",
@@ -53,6 +53,6 @@ const ARTISTS = [
     ],
     album: "Rocanroles sin destino (2004)",
     song: "Una nueva noche fria",
-    ytId: "https://youtu.be/y7kudMJiscw?si=B7KdbOB-7H5WW85q"
+    ytId: "https://www.youtube.com/watch?v=y7kudMJiscw&list=RDy7kudMJiscw&start_radio=1"
   }
 ];
