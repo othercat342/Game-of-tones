@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game of Tones</title>
-    <!-- Estilos limpios sin espacios -->
+    <title>Surco - Game of Tones</title>
+    <!-- Tipografía moderna (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header y Botón Hamburguesa -->
-    <header>
+    <!-- Header y Barra de Navegación -->
+    <header class="site-header">
         <div class="logo">Surco</div>
         <button id="hamburger-btn" class="hamburger" aria-label="Abrir menú">
-            ☰
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </button>
         <nav id="nav-menu" class="nav-menu">
             <ul>
-                <!-- Slots del menú hamburguesa con atributos de navegación -->
                 <li><a href="#" data-target="home">Inicio</a></li>
                 <li><a href="#" data-target="notes">Notas</a></li>
                 <li><a href="#" data-target="piano">Piano</a></li>
@@ -26,28 +31,59 @@
         </nav>
     </header>
 
-    <!-- Contenedores / Secciones de tu app -->
-    <main>
+    <!-- Contenido Principal (Vistas dinámicas) -->
+    <main class="site-main">
+        
+        <!-- 1. Vista de Inicio / Hero -->
         <section id="home" class="view active">
-            <h1>Escuchá la música desde adentro.</h1>
-            <p>Aprendé las siete notas, tocalas en un piano y después metete en la vida de cuatro artistas que suenan fuerte en Argentina y Uruguay.</p>
-            <button class="cta-btn" onclick="switchView('notes')">Empezar por las notas</button>
+            <div class="hero-content">
+                <h1>Escuchá la música<br>desde adentro.</h1>
+                <p>Aprendé las siete notas, tocalas en un piano y después metete en la vida de cuatro artistas que suenan fuerte en Argentina y Uruguay.</p>
+                <button class="cta-btn" onclick="switchView('notes')">Empezar por las notas</button>
+            </div>
         </section>
 
+        <!-- 2. Vista de Notas -->
         <section id="notes" class="view" style="display: none;">
-            <!-- Contenido de notas -->
+            <div class="section-header">
+                <h2>Las Siete Notas</h2>
+                <p>Descubrí los fundamentos musicales de manera interactiva.</p>
+            </div>
+            <div id="notes-container" class="notes-grid">
+                <!-- Aquí se inyectará el contenido desde notes.js / data.js -->
+            </div>
         </section>
 
+        <!-- 3. Vista de Piano -->
         <section id="piano" class="view" style="display: none;">
-            <!-- Contenido de piano -->
+            <div class="section-header">
+                <h2>Piano Interactivo</h2>
+                <p>Experimentá tocando cada nota en el teclado virtual.</p>
+            </div>
+            <div id="piano-container" class="piano-board">
+                <!-- Aquí se inyectará el piano desde piano.js -->
+            </div>
         </section>
 
+        <!-- 4. Vista de Artistas -->
         <section id="artists" class="view" style="display: none;">
-            <!-- Contenido de artistas -->
+            <div class="section-header">
+                <h2>Artistas Destacados</h2>
+                <p>Conocé el recorrido de las voces de Argentina y Uruguay.</p>
+            </div>
+            <div id="artists-container" class="artists-grid">
+                <!-- Aquí se inyectarán los artistas desde artists.js / data.js -->
+            </div>
         </section>
+
     </main>
 
-    <!-- Scripts en orden correcto con defer -->
+    <!-- Pie de página -->
+    <footer class="site-footer">
+        <p>Surco &copy; 2026 — Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Scripts en el orden correcto -->
     <script src="data.js" defer></script>
     <script src="notes.js" defer></script>
     <script src="piano.js" defer></script>
