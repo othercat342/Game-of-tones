@@ -13,7 +13,7 @@ const ARTISTS = [
     ],
     album: "Raro (2006)",
     song: "Yendo a la casa de Damián",
-    ytId: ""
+    ytId: "https://youtu.be/K7XcO81TckU?si=r11ohcvhIV66Di5v"
   },
   {
     name: "Indio Solari",
@@ -26,7 +26,7 @@ const ARTISTS = [
     ],
     album: "Un baión para el ojo idiota (1988)",
     song: "Ji ji ji",
-    ytId: ""
+    ytId: "https://youtu.be/tVvTDVswTxQ?si=_LD_n3KeMgXt0FSf"
   },
   {
     name: "Milo J",
@@ -38,8 +38,8 @@ const ARTISTS = [
       "Es una de las voces más jóvenes y escuchadas de la nueva música argentina."
     ],
     album: "La vida era más corta (2023)",
-    song: "M.A.I",
-    ytId: ""
+    song: "Jangadero",
+    ytId: "https://youtu.be/NCmb43DcH6M?si=gog3mzXOwfyCLA-U"
   },
   {
     name: "Callejeros",
@@ -52,7 +52,7 @@ const ARTISTS = [
       "«Rocanroles sin destino» (2004) es el disco por el que más se los recuerda."
     ],
     album: "Rocanroles sin destino (2004)",
-    song: "Una nueva noche fatal",
-    ytId: ""
+    song: "Una nueva noche fria",
+    ytId: "https://youtu.be/y7kudMJiscw?si=B7KdbOB-7H5WW85q"
   }
 ];
