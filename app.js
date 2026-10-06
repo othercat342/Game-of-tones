@@ -11,9 +11,9 @@ const ARTISTS = [
       "Se hicieron conocidos por letras irónicas, humor negro y observaciones raras de la vida cotidiana. Con los años pasaron de ser una banda de culto en Uruguay a llenar estadios en toda Latinoamérica.",
       "Su disco más recordado es «Raro» (2006), el que los lanzó a un público masivo en la región."
     ],
-    album: "Raro (2006)",
-    song: "Yendo a la casa de Damián",
-    ytId: ""
+    album: "tren bala (1996)",
+    song: "El cuarteto tapicero",
+    ytId: "https://www.youtube.com/watch?v=dQO0CSA8aZY&list=RDdQO0CSA8aZY&start_radio=1"
   },
   {
     name: "Indio Solari",
@@ -24,9 +24,9 @@ const ARTISTS = [
       "Los Redondos construyeron una escena propia, lejos de los medios, con recitales multitudinarios y un público fiel. Después Solari siguió en solitario con los Fundamentalistas del Aire Acondicionado.",
       "Sus letras mezclan poesía callejera, imágenes surrealistas y crítica social, y marcaron a varias generaciones del rock argentino."
     ],
-    album: "Un baión para el ojo idiota (1988)",
-    song: "Ji ji ji",
-    ytId: ""
+    album: "Gulp (1985)",
+    song: "la gran vestia pop",
+    ytId: "https://www.youtube.com/watch?v=PAq7xAqXTxk&list=RDPAq7xAqXTxk&start_radio=1"
   },
   {
     name: "Milo J",
@@ -38,8 +38,8 @@ const ARTISTS = [
       "Es una de las voces más jóvenes y escuchadas de la nueva música argentina."
     ],
     album: "La vida era más corta (2023)",
-    song: "M.A.I",
-    ytId: ""
+    song: "solidifican12",
+    ytId: "https://www.youtube.com/watch?v=7WBy2u9epeM&list=RD7WBy2u9epeM&start_radio=1"
   },
   {
     name: "Callejeros",
@@ -52,8 +52,8 @@ const ARTISTS = [
       "«Rocanroles sin destino» (2004) es el disco por el que más se los recuerda."
     ],
     album: "Rocanroles sin destino (2004)",
-    song: "Una nueva noche fatal",
-    ytId: ""
+    song: "Una nueva noche fria",
+    ytId: "https://www.youtube.com/watch?v=y7kudMJiscw&list=RDy7kudMJiscw&start_radio=1"
   }
 ];
 
