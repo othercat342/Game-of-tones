@@ -1,93 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surco - Game of Tones</title>
-    <!-- Tipografía moderna (Google Fonts) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    <!-- Hoja de estilos principal -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surco · Música para meterse adentro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-slot="inicio">
+  <header class="top">
+    <a class="brand" href="#inicio">Surco</a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-    <!-- Header y Barra de Navegación -->
-    <header class="site-header">
-        <div class="logo">Surco</div>
-        <button id="hamburger-btn" class="hamburger" aria-label="Abrir menú">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-        <nav id="nav-menu" class="nav-menu">
-            <ul>
-                <li><a href="#" data-target="home">Inicio</a></li>
-                <li><a href="#" data-target="notes">Notas</a></li>
-                <li><a href="#" data-target="piano">Piano</a></li>
-                <li><a href="#" data-target="artists">Artistas</a></li>
-            </ul>
-        </nav>
-    </header>
+  <nav class="drawer" id="drawer" aria-label="Menú principal">
+    <a href="#inicio">Inicio</a>
+    <a href="#notas">Las notas</a>
+    <a href="#piano">Piano</a>
+    <a href="#artistas">Artistas</a>
+  </nav>
+  <div class="scrim" id="scrim"></div>
 
-    <!-- Contenido Principal (Vistas dinámicas) -->
-    <main class="site-main">
-        
-        <!-- 1. Vista de Inicio / Hero -->
-        <section id="home" class="view active">
-            <div class="hero-content">
-                <h1>Escuchá la música<br>desde adentro.</h1>
-                <p>Aprendé las siete notas, tocalas en un piano y después metete en la vida de cuatro artistas que suenan fuerte en Argentina y Uruguay.</p>
-                <button class="cta-btn" onclick="switchView('notes')">Empezar por las notas</button>
-            </div>
-        </section>
+  <main>
+    <!-- SLOT 1: INICIO -->
+    <section class="slot hero" id="inicio" data-slot>
+      <h1>Escuchá la música desde adentro.</h1>
+      <p>Aprendé las siete notas, tocalas en un piano y después metete en la vida de cuatro artistas que suenan fuerte en Argentina y Uruguay.</p>
+      <p><a class="btn" href="#notas">Empezar por las notas</a></p>
+    </section>
 
-        <!-- 2. Vista de Notas -->
-        <section id="notes" class="view" style="display: none;">
-            <div class="section-header">
-                <h2>Las Siete Notas</h2>
-                <p>Descubrí los fundamentos musicales de manera interactiva.</p>
-            </div>
-            <div id="notes-container" class="notes-grid">
-                <!-- Aquí se inyectará el contenido desde notes.js / data.js -->
-            </div>
-        </section>
+    <!-- SLOT 2: NOTAS -->
+    <section class="slot block" id="notas" data-slot hidden>
+      <h2>Las notas para empezar</h2>
+      <p class="lead">Toda la música occidental sale de 12 sonidos. Los siete naturales tienen nombre de letra y de sílaba.</p>
+      <ol class="notes" id="noteList"></ol>
+      <div class="tips">
+        <article>
+          <h3>Escala mayor</h3>
+          <p>Es la que suena "alegre". Se arma con tonos y semitonos: <strong>T T S T T T S</strong>. Desde Do: Do Re Mi Fa Sol La Si Do.</p>
+        </article>
+        <article>
+          <h3>Acorde mayor</h3>
+          <p>Tocá la primera, la tercera y la quinta nota de la escala. En Do: <strong>Do + Mi + Sol</strong>.</p>
+        </article>
+        <article>
+          <h3>Acorde menor</h3>
+          <p>Bajá un semitono la tercera y suena más triste. En La menor: <strong>La + Do + Mi</strong>.</p>
+        </article>
+      </div>
+    </section>
 
-        <!-- 3. Vista de Piano -->
-        <section id="piano" class="view" style="display: none;">
-            <div class="section-header">
-                <h2>Piano Interactivo</h2>
-                <p>Experimentá tocando cada nota en el teclado virtual.</p>
-            </div>
-            <div id="piano-container" class="piano-board">
-                <!-- Aquí se inyectará el piano desde piano.js -->
-            </div>
-        </section>
+    <!-- SLOT 3: PIANO -->
+    <section class="slot block" id="piano-slot" data-slot hidden>
+      <h2>Tocá un piano</h2>
+      <p class="lead">Hacé clic en las teclas o usá tu teclado: <kbd>A S D F G H J K</kbd> para las blancas y <kbd>W E T Y U</kbd> para las negras.</p>
+      <div class="piano" id="piano" role="group" aria-label="Piano"></div>
+      <p class="played" id="played" aria-live="polite">Todavía no tocaste nada.</p>
+    </section>
 
-        <!-- 4. Vista de Artistas -->
-        <section id="artists" class="view" style="display: none;">
-            <div class="section-header">
-                <h2>Artistas Destacados</h2>
-                <p>Conocé el recorrido de las voces de Argentina y Uruguay.</p>
-            </div>
-            <div id="artists-container" class="artists-grid">
-                <!-- Aquí se inyectarán los artistas desde artists.js / data.js -->
-            </div>
-        </section>
+    <!-- SLOT 4: ARTISTAS -->
+    <section class="slot block" id="artistas" data-slot hidden>
+      <h2>Artistas</h2>
+      <p class="lead">Elegí uno: se abre su biografía y suena una canción de su disco más conocido.</p>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Artistas"></div>
+      <div class="artist">
+        <div class="vinyl-wrap">
+          <div class="vinyl" id="vinyl"><span class="label"></span></div>
+        </div>
+        <div class="bio" id="bio" aria-live="polite">
+          <p class="empty">Elegí un artista para leer su historia.</p>
+        </div>
+      </div>
+      <div class="player" id="player"></div>
+    </section>
+  </main>
 
-    </main>
+  <footer>Hecho con HTML, CSS y JavaScript. Las canciones se reproducen desde YouTube.</footer>
 
-    <!-- Pie de página -->
-    <footer class="site-footer">
-        <p>Surco &copy; 2026 — Todos los derechos reservados</p>
-    </footer>
-
-    <!-- Scripts en el orden correcto -->
-    <script src="data.js" defer></script>
-    <script src="notes.js" defer></script>
-    <script src="piano.js" defer></script>
-    <script src="artists.js" defer></script>
-    <script src="menu.js" defer></script>
+  <script src="data.js"></script>
+  <script src="notes.js"></script>
+  <script src="piano.js"></script>
+  <script src="artists.js"></script>
+  <script src="menu.js"></script>
 </body>
 </html>
