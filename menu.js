@@ -2,7 +2,7 @@
 const burger = document.getElementById("burger");
 const drawer = document.getElementById("drawer");
 const scrim = document.getElementById("scrim");
-const slots = [...document.querySelectorAll("[data-slot]")];
+const slots = [...document.querySelectorAll("section[data-slot]")];
 const links = [...drawer.querySelectorAll("a")];
 
 function toggleMenu(open) {
