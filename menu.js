@@ -1,4 +1,3 @@
-
 /* ===== MENÚ + NAVEGACIÓN POR SLOTS ===== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -66,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * #piano-slot
      */
 
-    const targetId =
+    let targetId =
       name === "piano"
         ? "piano-slot"
         : name;
