@@ -149,3 +149,13 @@ body{background:radial-gradient(60rem 28rem at 12% -4%,rgba(255,179,71,.2),trans
 .chords button.on{background:var(--accent);color:var(--ink);border-color:var(--accent)}
 .chords button.on small{color:var(--ink)}
 .row .check{cursor:pointer}
+
+/* ===== Cuartetito: barra, streaming y modo profe ===== */
+.chatbar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;margin-bottom:.8rem;min-height:2.4rem}
+.pill{background:var(--panel);border:1px solid var(--line);color:var(--accent);border-radius:2rem;padding:.25rem .8rem;font-size:.9rem}
+.switch{margin-left:auto;border:2px solid var(--line);background:transparent;color:var(--muted);border-radius:2rem;padding:.35rem 1rem;font:500 .95rem "Bricolage Grotesque",sans-serif;cursor:pointer}
+.switch[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.msg.typing:empty::before{content:"Cuartetito está pensando…";color:var(--muted)}
+.msg.typing:not(:empty)::after{content:"";display:inline-block;width:.5rem;height:1em;margin-left:.2rem;vertical-align:text-bottom;background:var(--accent);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.msg.typing:not(:empty)::after{animation:none}}
