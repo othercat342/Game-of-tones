@@ -1,3 +1,5 @@
+let currentArtist = null; // lo lee chat.js para darle contexto a Cuartetito
+
 /* Acepta el ID solo o una URL completa de YouTube */
 function ytId(v) {
   const m = String(v || "").match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
@@ -21,6 +23,7 @@ ARTISTS.forEach((a, i) => {
 
 function select(i) {
   const a = ARTISTS[i];
+  currentArtist = a.name;
   document.documentElement.style.setProperty("--accent", a.color);
   [...tabs.children].forEach((b, j) => b.setAttribute("aria-selected", j === i));
   bio.innerHTML = `<h3>${a.name}</h3><p class="meta">${a.meta}</p>` +
