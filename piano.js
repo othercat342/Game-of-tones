@@ -1,4 +1,3 @@
-
 /* ===== PIANO (Web Audio) ===== */
 
 const KEYS = [
@@ -73,14 +72,6 @@ const playedEl =
  * que es utilizado por menu.js para navegar entre slots.
  */
 const playedHistory = [];
-playedHistory.push(key.n);
-
-if (playedHistory.length > 12) {
-  playedHistory.shift();
-}
-
-playedEl.textContent =
-  "Tocaste: " + playedHistory.join(" · ");
 
 const keyEls = {};
 
