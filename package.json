@@ -1,7 +1,7 @@
 {
-  "name": "game-of-tones",
+  "name": "surco-aprende",
   "version": "1.0.0",
-  "description": "Servidor para Game of Tones",
+  "description": "Surco: música para meterse adentro",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
