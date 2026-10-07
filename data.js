@@ -27,7 +27,7 @@ const ARTISTS = [
     songs: [
       { title: "Yendo a la casa de Damián", album: "Raro (2006)",
         ytId: "https://www.youtube.com/watch?v=K7XcO81TckU&list=RDK7XcO81TckU&start_radio=1" },
-      { title: "Lo malo de ser bueno", ytId: "" }
+      { title: "Lo malo de ser bueno", ytId: "https://www.youtube.com/watch?v=S_roMeig-YQ&list=RDS_roMeig-YQ&start_radio=1" }
     ]
   },
   {
@@ -55,8 +55,8 @@ const ARTISTS = [
     songs: [
       { title: "Ji ji ji", album: "Un baión para el ojo idiota (1988)",
         ytId: "https://www.youtube.com/watch?v=tVvTDVswTxQ&list=RDtVvTDVswTxQ&start_radio=1" },
-      { title: "Mariposa Pontiac", ytId: "" },
-      { title: "Un ángel para tu soledad", ytId: "" }
+      { title: "Mariposa Pontiac", ytId: "https://www.youtube.com/watch?v=S1AlY7WWQpM&list=RDS1AlY7WWQpM&start_radio=1" },
+      { title: "Un ángel para tu soledad", ytId: "https://www.youtube.com/watch?v=usC1r3DVbIY&list=RDusC1r3DVbIY&start_radio=1" }
     ]
   },
   {
@@ -77,7 +77,7 @@ const ARTISTS = [
     songs: [
       { title: "Jangadero", album: "La vida era más corta (2023)",
         ytId: "https://www.youtube.com/watch?v=NCmb43DcH6M&list=RDNCmb43DcH6M&start_radio=1" },
-      { title: "Bzrp Music Sessions, Vol. 57", ytId: "" }
+      { title: "Bzrp Music Sessions, Vol. 57", ytId: "https://www.youtube.com/watch?v=_6XzJPyAJDI&list=RD_6XzJPyAJDI&start_radio=1" }
     ]
   },
   {
@@ -99,7 +99,7 @@ const ARTISTS = [
     songs: [
       { title: "Una nueva noche fría", album: "Rocanroles sin destino (2004)",
         ytId: "https://www.youtube.com/watch?v=y7kudMJiscw&list=RDy7kudMJiscw&start_radio=1" },
-      { title: "Prohibido", ytId: "" }
+      { title: "Prohibido", ytId: "https://www.youtube.com/watch?v=rDxL6AIcpeE&list=RDrDxL6AIcpeE&start_radio=1" }
     ]
   },
   {
@@ -126,10 +126,10 @@ const ARTISTS = [
       { y: "2014", t: "Fallece Gustavo Cerati" }
     ],
     songs: [
-      { title: "De música ligera", album: "Canción animal (1990)", ytId: "" },
-      { title: "Persiana americana", album: "Signos (1986)", ytId: "" },
-      { title: "En la ciudad de la furia", album: "Doble vida (1988)", ytId: "" },
-      { title: "Cuando pase el temblor", album: "Soda Stereo (1984)", ytId: "" }
+      { title: "De música ligera", album: "Canción animal (1990)", ytId: "https://www.youtube.com/watch?v=T_FkEw27XJ0&list=RDT_FkEw27XJ0&start_radio=1" },
+      { title: "Persiana americana", album: "Signos (1986)", ytId: "https://www.youtube.com/watch?v=LalPz4lIZYk&list=RDLalPz4lIZYk&start_radio=1" },
+      { title: "En la ciudad de la furia", album: "Doble vida (1988)", ytId: "https://www.youtube.com/watch?v=vo7jBHB66q4&list=RDvo7jBHB66q4&start_radio=1" },
+      { title: "Cuando pase el temblor", album: "Soda Stereo (1984)", ytId: "https://www.youtube.com/watch?v=mCOmgGjAHCQ&list=RDmCOmgGjAHCQ&start_radio=1" }
     ]
   },
   {
@@ -152,9 +152,9 @@ const ARTISTS = [
       { y: "2012", t: "Fallece en Buenos Aires" }
     ],
     songs: [
-      { title: "Muchacha ojos de papel", album: "Almendra (1969)", ytId: "" },
-      { title: "Barro tal vez", album: "Artaud (1973)", ytId: "" },
-      { title: "Alma de diamante", album: "Alma de diamante (1980)", ytId: "" }
+      { title: "Muchacha ojos de papel", album: "Almendra (1969)", ytId: "https://www.youtube.com/watch?v=lP7_qMRIXTg&list=RDlP7_qMRIXTg&start_radio=1" },
+      { title: "Barro tal vez", album: "Artaud (1973)", ytId: "https://www.youtube.com/watch?v=TPw7g2ZkpZw&list=RDTPw7g2ZkpZw&start_radio=1" },
+      { title: "Alma de diamante", album: "Alma de diamante (1980)", ytId: "https://www.youtube.com/watch?v=hEL2AgzRmjc&list=RDhEL2AgzRmjc&start_radio=1" }
     ]
   },
   {
@@ -178,9 +178,9 @@ const ARTISTS = [
       { y: "2009", t: "Fallece en Buenos Aires" }
     ],
     songs: [
-      { title: "Gracias a la vida", album: "Homenaje a Violeta Parra (1971)", ytId: "" },
-      { title: "Alfonsina y el mar", album: "Mujeres argentinas (1969)", ytId: "" },
-      { title: "Solo le pido a Dios", ytId: "" }
+      { title: "Gracias a la vida", album: "Homenaje a Violeta Parra (1971)", ytId: "https://www.youtube.com/watch?v=lDFuHhflHsw&list=RDlDFuHhflHsw&start_radio=1" },
+      { title: "Alfonsina y el mar", album: "Mujeres argentinas (1969)", ytId: "https://www.youtube.com/watch?v=F_FRa9htNiw&list=RDF_FRa9htNiw&start_radio=1" },
+      { title: "Solo le pido a Dios", ytId: "https://www.youtube.com/watch?v=vzQIwFPyEc4&list=RDvzQIwFPyEc4&start_radio=1" }
     ]
   },
   {
@@ -203,8 +203,8 @@ const ARTISTS = [
       { y: "1992", t: "Fallece en Buenos Aires" }
     ],
     songs: [
-      { title: "Libertango", album: "Libertango (1974)", ytId: "" },
-      { title: "Adiós Nonino", ytId: "" }
+      { title: "Libertango", album: "Libertango (1974)", ytId: "https://www.youtube.com/watch?v=vaXNdVTGT0k&list=RDvaXNdVTGT0k&start_radio=1" },
+      { title: "Adiós Nonino", ytId: "https://www.youtube.com/watch?v=VTPec8z5vdY&list=RDVTPec8z5vdY&start_radio=1" }
     ]
   },
   {
@@ -227,9 +227,9 @@ const ARTISTS = [
       { y: "2026", t: "Fallece en Montevideo" }
     ],
     songs: [
-      { title: "Las manzanas", ytId: "" },
-      { title: "Candombe para Gardel", ytId: "" },
-      { title: "Dedos", ytId: "" }
+      { title: "Las manzanas", ytId: "https://www.youtube.com/watch?v=K_3cpETFgWk&list=RDK_3cpETFgWk&start_radio=1" },
+      { title: "Candombe para Gardel", ytId: "https://www.youtube.com/watch?v=_g29SyYizHg&list=RD_g29SyYizHg&start_radio=1" },
+      { title: "Dedos", ytId: "https://www.youtube.com/watch?v=t8VnpYHnz1o&list=RDt8VnpYHnz1o&start_radio=1" }
     ]
   },
   {
@@ -254,9 +254,9 @@ const ARTISTS = [
       { y: "2022", t: "Tinta y tiempo" }
     ],
     songs: [
-      { title: "Todo se transforma", album: "Eco (2004)", ytId: "" },
-      { title: "Al otro lado del río", album: "Eco (2004)", ytId: "" },
-      { title: "Telefonía", album: "Eco (2004)", ytId: "" }
+      { title: "Todo se transforma", album: "Eco (2004)", ytId: "https://www.youtube.com/watch?v=QfhEKpFiepM&list=RDQfhEKpFiepM&start_radio=1" },
+      { title: "Al otro lado del río", album: "Eco (2004)", ytId: "https://www.youtube.com/watch?v=cg1wDc9JVB4&list=RDcg1wDc9JVB4&start_radio=1" },
+      { title: "Telefonía", album: "Eco (2004)", ytId: "https://www.youtube.com/watch?v=Wn4neB3uV6c&list=RDWn4neB3uV6c&start_radio=1" }
     ]
   },
   {
@@ -277,9 +277,9 @@ const ARTISTS = [
       { y: "2022", t: "Celebran 50 años con una gira nacional" }
     ],
     songs: [
-      { title: "El bombón asesino", ytId: "" },
-      { title: "El parrandero", ytId: "" },
-      { title: "Soy sabalero", ytId: "" }
+      { title: "El bombón asesino", ytId: "https://www.youtube.com/watch?v=fwuKmnyuliw&list=RDfwuKmnyuliw&start_radio=1" },
+      { title: "El parrandero", ytId: "https://www.youtube.com/watch?v=RIhA64Wb7MQ&list=RDRIhA64Wb7MQ&start_radio=1" },
+      { title: "Soy sabalero", ytId: "https://www.youtube.com/watch?v=QmYBmoEVqbk&list=RDQmYBmoEVqbk&start_radio=1" }
     ]
   }
 ];
