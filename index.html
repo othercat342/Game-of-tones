@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,6 +22,8 @@
     <a href="#notas" data-vista="notas">Las notas</a>
     <a href="#piano" data-vista="piano">Piano</a>
     <a href="#artistas" data-vista="artistas">Artistas</a>
+    <a href="#historia" data-vista="historia">Historia</a>
+    <a href="#cuartetito" data-vista="cuartetito">Cuartetito IA</a>
   </nav>
   <div class="scrim" id="scrim"></div>
 
@@ -78,6 +79,31 @@
       </div>
       <div class="player" id="player"></div>
     </section>
+
+    <!-- SLOT 5: HISTORIA DE LA MÚSICA -->
+    <section class="slot block" id="historia" data-slot hidden>
+      <h2>La historia de la música</h2>
+      <p class="lead">De los primeros silbidos al trap: así se fue armando todo lo que escuchás hoy.</p>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <!-- SLOT 6: CUARTETITO (IA) -->
+    <section class="slot block" id="cuartetito" data-slot hidden>
+      <h2>Cuartetito</h2>
+      <p class="lead">Tu guía musical con inteligencia artificial. Preguntale lo que quieras sobre música.</p>
+      <div class="chat">
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+        <div class="chips">
+          <button type="button" data-ask="¿Cómo armo un acorde mayor?">¿Cómo armo un acorde?</button>
+          <button type="button" data-ask="¿Cómo nació el rock argentino?">Rock argentino</button>
+          <button type="button" data-ask="Recomendame algo parecido al Cuarteto de Nos">Algo parecido al Cuarteto</button>
+        </div>
+        <form class="chatform" id="chatForm">
+          <input id="chatInput" type="text" maxlength="500" placeholder="Escribí tu pregunta…" autocomplete="off" aria-label="Tu pregunta">
+          <button class="btn" id="sendBtn" type="submit">Enviar</button>
+        </form>
+      </div>
+    </section>
   </main>
 
   <footer>Hecho con HTML, CSS y JavaScript. Las canciones se reproducen desde YouTube.</footer>
@@ -86,6 +112,8 @@
   <script src="notes.js"></script>
   <script src="piano.js"></script>
   <script src="artists.js"></script>
+  <script src="historia.js"></script>
+  <script src="chat.js"></script>
   <script src="menu.js"></script>
 </body>
 </html>
