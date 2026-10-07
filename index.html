@@ -21,6 +21,7 @@
     <a href="#inicio" data-vista="inicio">Inicio</a>
     <a href="#notas" data-vista="notas">Las notas</a>
     <a href="#piano" data-vista="piano">Piano</a>
+    <a href="#practica" data-vista="practica">Práctica</a>
     <a href="#artistas" data-vista="artistas">Artistas</a>
     <a href="#historia" data-vista="historia">Historia</a>
     <a href="#cuartetito" data-vista="cuartetito">Cuartetito IA</a>
@@ -80,6 +81,62 @@
       <div class="player" id="player"></div>
     </section>
 
+    <!-- SLOT: PRÁCTICA -->
+    <section class="slot block" id="practica" data-slot hidden>
+      <h2>Práctica</h2>
+      <p class="lead">Herramientas para entrenar: acordes, metrónomo, afinador y progresiones.</p>
+      <div class="tools">
+
+        <article class="tool">
+          <h3>Acordes</h3>
+          <p class="hint">Elegí el tipo y tocá la nota base.</p>
+          <div class="pills" id="chordTypes"></div>
+          <div class="pills" id="chordRoots"></div>
+          <p class="readout" id="chordInfo">Tocá un acorde.</p>
+        </article>
+
+        <article class="tool">
+          <h3>Metrónomo</h3>
+          <div class="bpmrow"><output id="bpmOut">100</output><span>BPM</span></div>
+          <input type="range" id="bpm" min="30" max="240" value="100" aria-label="Tempo en BPM">
+          <div class="beatdots" id="beatDots" aria-hidden="true"></div>
+          <div class="row">
+            <label>Compás
+              <select id="beatsSel"><option>2</option><option>3</option><option selected>4</option><option>6</option></select>
+            </label>
+            <button class="btn" id="metroBtn" type="button">Iniciar</button>
+            <button class="ghost" id="tapBtn" type="button">Tap tempo</button>
+          </div>
+          <p class="hint">Tocá "Tap tempo" al ritmo de una canción para calcular sus BPM.</p>
+        </article>
+
+        <article class="tool">
+          <h3>Afinador</h3>
+          <p class="hint">Usa el micrófono. Tocá o cantá una nota sostenida.</p>
+          <div class="tnote" id="tNote">—</div>
+          <div class="meter" aria-hidden="true"><i class="mid"></i><b id="tNeedle"></b></div>
+          <p class="readout" id="tStatus">Apagado</p>
+          <button class="btn" id="tunerBtn" type="button">Activar micrófono</button>
+        </article>
+
+        <article class="tool">
+          <h3>Progresiones</h3>
+          <p class="hint">Usa el tempo del metrónomo (2 tiempos por acorde).</p>
+          <div class="row">
+            <label>Tonalidad <select id="progKey"></select></label>
+            <label>Estilo <select id="progPreset"></select></label>
+          </div>
+          <div class="chords" id="progChords"></div>
+          <div class="row">
+            <button class="btn" id="progPlay" type="button">Escuchar</button>
+            <button class="ghost" id="progRandom" type="button">Al azar</button>
+            <label class="check"><input type="checkbox" id="progLoop"> Repetir</label>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
     <!-- SLOT 5: HISTORIA DE LA MÚSICA -->
     <section class="slot block" id="historia" data-slot hidden>
       <h2>La historia de la música</h2>
@@ -112,6 +169,7 @@
   <script src="notes.js"></script>
   <script src="piano.js"></script>
   <script src="artists.js"></script>
+  <script src="practica.js"></script>
   <script src="historia.js"></script>
   <script src="chat.js"></script>
   <script src="menu.js"></script>
