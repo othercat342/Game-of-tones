@@ -1,3 +1,9 @@
+/* Acepta el ID solo o una URL completa de YouTube */
+function ytId(v) {
+  const m = String(v || "").match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
+  return m ? m[1] : String(v || "").trim();
+}
+
 /* ===== ARTISTAS ===== */
 const tabs = document.getElementById("tabs");
 const bio = document.getElementById("bio");
@@ -23,7 +29,7 @@ function select(i) {
 
   const q = encodeURIComponent(`${a.name} ${a.song}`);
   const media = a.ytId
-    ? `<iframe src="https://www.youtube-nocookie.com/embed/${a.ytId}?autoplay=1" title="${a.song}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+    ? `<iframe src="https://www.youtube-nocookie.com/embed/${ytId(a.ytId)}?autoplay=1" title="${a.song}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
     : `<a class="btn" href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">Escuchar en YouTube</a>`;
   player.innerHTML = `<p class="now">Sonando de «${a.album}»: <strong>${a.song}</strong></p>${media}`;
 }
