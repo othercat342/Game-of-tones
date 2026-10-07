@@ -2,24 +2,28 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 300
-  0;
+const PORT = process.env.PORT || 3000;
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-haiku-4-5-20251001";
 // "gemini-flash-latest" es un alias de Google que apunta al Flash más nuevo.
 // Si querés fijar uno, definí GEMINI_MODEL en Railway (ej: gemini-3.7-flash).
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-flash-latest";
-const ARTISTS_OK = ["Cuarteto de Nos", "Indio Solari", "Milo J", "Callejeros"];
+const ARTISTS_OK = [
+  "Cuarteto de Nos", "Indio Solari", "Milo J", "Callejeros", "Soda Stereo",
+  "Luis Alberto Spinetta", "Mercedes Sosa", "Astor Piazzolla", "Rubén Rada",
+  "Jorge Drexler", "Los Palmeras"
+];
 
 app.set("trust proxy", 1);
 app.use(express.json({ limit: "10kb" }));
 
 const SYSTEM = `Sos Cuartetito, el guía musical de la página "Surco". Hablás en español rioplatense (voseo), con calidez y un toque de humor, como un amigo que sabe de música.
-Ayudás con: notas y teoría básica (escalas, acordes, ritmo), historia de la música, y los artistas de la página: Cuarteto de Nos, Indio Solari, Milo J y Callejeros.
+Ayudás con: notas y teoría básica (escalas, acordes, ritmo), historia de la música, y los artistas de la página: Cuarteto de Nos, Indio Solari, Milo J, Callejeros, Soda Stereo, Luis Alberto Spinetta, Mercedes Sosa, Astor Piazzolla, Rubén Rada, Jorge Drexler y Los Palmeras. También de géneros como tango, folklore, candombe, murga y cumbia.
 Reglas:
 - Respuestas cortas: máximo unas 120 palabras, sin listas largas.
 - Si no estás seguro de un dato, decilo; no inventes fechas, discos ni letras.
 - No reproduzcas letras de canciones; podés comentar de qué tratan.
 - Sobre Callejeros y la tragedia de Cromañón hablá con respeto y sin morbo.
+- Rubén Rada, Mercedes Sosa, Luis Alberto Spinetta, Astor Piazzolla y Gustavo Cerati fallecieron: hablá de ellos en pasado.
 - Si te preguntan algo que no tiene que ver con música, respondé breve y volvé amablemente al tema musical.`;
 
 const PROFE = `
