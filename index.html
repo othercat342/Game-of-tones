@@ -149,12 +149,13 @@
       <h2>Cuartetito</h2>
       <p class="lead">Tu guía musical con inteligencia artificial. Preguntale lo que quieras sobre música.</p>
       <div class="chat">
-        <div class="msgs" id="msgs" aria-live="polite"></div>
-        <div class="chips">
-          <button type="button" data-ask="¿Cómo armo un acorde mayor?">¿Cómo armo un acorde?</button>
-          <button type="button" data-ask="¿Cómo nació el rock argentino?">Rock argentino</button>
-          <button type="button" data-ask="Recomendame algo parecido al Cuarteto de Nos">Algo parecido al Cuarteto</button>
+        <div class="chatbar">
+          <span class="pill" id="ctxPill" hidden></span>
+          <button type="button" class="switch" id="profeBtn" aria-pressed="false">Modo profe</button>
         </div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+        <div class="chips" id="chips"></div>
+        <p class="hint" id="profeHint" hidden>Practicá lo que te arme en <a href="#practica">Práctica</a> y en el <a href="#piano">Piano</a>.</p>
         <form class="chatform" id="chatForm">
           <input id="chatInput" type="text" maxlength="500" placeholder="Escribí tu pregunta…" autocomplete="off" aria-label="Tu pregunta">
           <button class="btn" id="sendBtn" type="submit">Enviar</button>
