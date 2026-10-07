@@ -1,64 +1,33 @@
-Surco · Música para meterse adentro
+# Surco · Música para meterse adentro
 
-Página estática para aprender las 7 notas, tocar un piano virtual y conocer artistas de Argentina y Uruguay.
+Página para aprender las 7 notas, tocar un piano virtual, practicar (acordes, metrónomo, afinador, progresiones), conocer artistas de Argentina y Uruguay y charlar con Cuartetito, un guía con IA.
 
-Archivos
+## Archivos
 
-├── index.html      # Página principal
-├── styles.css      # Estilos
-├── data.js         # Datos de los artistas
-├── notes.js        # Sección de notas
-├── piano.js        # Piano interactivo (Web Audio)
-├── artists.js      # Sección de artistas
-└── menu.js         # Menú y navegación por secciones
+- `index.html`: página principal
+- `styles.css`: estilos
+- `data.js`: **datos de los artistas** (bio, géneros, línea de tiempo y canciones)
+- `artists.js`: sección de artistas (filtro por género, línea de tiempo, selector de canciones)
+- `historia.js`: línea de tiempo de la historia de la música
+- `notes.js`, `piano.js`, `practica.js`: notas, piano y herramientas de práctica
+- `chat.js` + `server.js`: chat con IA (necesita Node y una API key)
+- `menu.js`: menú y navegación por secciones
 
-Cómo probarlo localmente
+## Cómo agregar un artista
 
-Abrí index.html en el navegador (doble clic o con Live Server).
+Copiá un bloque de `data.js` y completá `name`, `genre`, `meta`, `color`, `bio`, `line` (línea de tiempo) y `songs`.
+Después agregá el nombre del artista a `ARTISTS_OK` en `server.js`, para que Cuartetito sepa de quién estás hablando.
 
-Cómo subirlo a GitHub + Netlify / Vercel
+## Cómo hacer que suene una canción dentro de la página
 
+En cada canción de `data.js`, pegá el `ytId` (lo que va después de `v=` en la URL de YouTube, o la URL entera).
+Si `ytId` está vacío, se muestra un botón que busca la canción en YouTube.
 
+## Cómo probarlo localmente
 
+```
+npm install
+GEMINI_API_KEY=tu_clave npm start     # o ANTHROPIC_API_KEY
+```
 
-
-Creá un repo nuevo en GitHub.
-
-
-
-Subí todos estos archivos a la raíz del repo (no dentro de una carpeta extra).
-
-
-
-En netlify.com o vercel.com:
-
-
-
-
-
-Importá el repo de GitHub
-
-
-
-Deploy (no hace falta build command ni output directory)
-
-
-
-Te dan una URL pública al instante.
-
-Correcciones incluidas
-
-
-
-
-
-Bug de la página que desaparecía: el selector tomaba el <body> y lo ocultaba. Ahora solo selecciona las <section>.
-
-
-
-Meta tags para redes sociales y SEO.
-
-
-
-Scripts con defer para mejor carga.
-
+Abrí http://localhost:3000. Sin servidor todo funciona menos el chat.
