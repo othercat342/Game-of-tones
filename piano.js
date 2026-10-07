@@ -18,7 +18,7 @@ const KEYS = [
 
 let ctx;
 
-function play(midi) {
+function play(midi, vol = 0.4) {
   ctx = ctx || new (
     window.AudioContext ||
     window.webkitAudioContext
@@ -38,7 +38,7 @@ function play(midi) {
   );
 
   gain.gain.exponentialRampToValueAtTime(
-    0.4,
+    vol,
     ctx.currentTime + 0.02
   );
 
