@@ -2,8 +2,12 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-const MODEL = process.env.ANTHROPIC_MODEL || "claude-haiku-4-5-20251001";
+const PORT = process.env.PORT || 300
+  0;
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || "claude-haiku-4-5-20251001";
+// "gemini-flash-latest" es un alias de Google que apunta al Flash más nuevo.
+// Si querés fijar uno, definí GEMINI_MODEL en Railway (ej: gemini-3.7-flash).
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-flash-latest";
 const ARTISTS_OK = ["Cuarteto de Nos", "Indio Solari", "Milo J", "Callejeros"];
 
 app.set("trust proxy", 1);
@@ -45,8 +49,9 @@ function limited(ip) {
   return list.length > 15;
 }
 
-// Lee el stream (SSE) de la API y reenvía solo el texto al navegador
-async function streamText(apiRes, res) {
+// Lee el stream (SSE) del proveedor y reenvía solo el texto al navegador.
+// "extract" saca el texto de cada evento según el proveedor (Gemini o Claude).
+async function streamText(apiRes, res, extract) {
   const reader = apiRes.body.getReader();
   res.on("close", () => reader.cancel().catch(() => {}));
   const dec = new TextDecoder();
@@ -63,19 +68,25 @@ async function streamText(apiRes, res) {
       if (!json) continue;
       try {
         const ev = JSON.parse(json);
-        if (ev.type === "content_block_delta" && ev.delta && ev.delta.type === "text_delta") {
-          res.write(ev.delta.text);
-        } else if (ev.type === "error") {
-          console.error("Stream error:", ev);
-        }
+        if (ev.error || ev.type === "error") console.error("Stream error:", ev);
+        const t = extract(ev);
+        if (t) res.write(t);
       } catch (_) { /* línea incompleta o ajena: se ignora */ }
     }
   }
 }
 
+const extractGemini = ev => {
+  const parts = (ev.candidates && ev.candidates[0] && ev.candidates[0].content && ev.candidates[0].content.parts) || [];
+  return parts.filter(p => p.text && !p.thought).map(p => p.text).join("");
+};
+const extractClaude = ev =>
+  ev.type === "content_block_delta" && ev.delta && ev.delta.type === "text_delta" ? ev.delta.text : "";
+
 app.post("/api/chat", async (req, res) => {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return res.status(500).json({ error: "Falta configurar ANTHROPIC_API_KEY en el servidor." });
+  const useGemini = !!process.env.GEMINI_API_KEY;
+  if (!useGemini && !process.env.ANTHROPIC_API_KEY) {
+    return res.status(500).json({ error: "Falta configurar GEMINI_API_KEY (o ANTHROPIC_API_KEY) en el servidor." });
   }
   if (limited(req.ip)) {
     return res.status(429).json({ error: "Demasiados mensajes, esperá un minuto." });
@@ -94,23 +105,46 @@ app.post("/api/chat", async (req, res) => {
   const mode = req.body.mode === "profe" ? "profe" : "charla";
 
   try {
-    const r = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01"
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: mode === "profe" ? 700 : 400,
-        system: buildSystem(artist, mode),
-        messages,
-        stream: true
-      })
-    });
+    const system = buildSystem(artist, mode);
+    let r, extract;
+    if (useGemini) {
+      r = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse`,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: system }] },
+            contents: messages.map(m => ({
+              role: m.role === "assistant" ? "model" : "user",
+              parts: [{ text: m.content }]
+            })),
+            // margen amplio: en modelos con "razonamiento" parte de los tokens se usa pensando
+            generationConfig: { maxOutputTokens: mode === "profe" ? 2000 : 1200 }
+          })
+        }
+      );
+      extract = extractGemini;
+    } else {
+      r = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-api-key": process.env.ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01"
+        },
+        body: JSON.stringify({
+          model: ANTHROPIC_MODEL,
+          max_tokens: mode === "profe" ? 700 : 400,
+          system,
+          messages,
+          stream: true
+        })
+      });
+      extract = extractClaude;
+    }
     if (!r.ok) {
-      console.error("Anthropic API:", r.status, await r.text());
+      console.error("Error de la API:", r.status, await r.text());
       return res.status(502).json({ error: "La IA no respondió." });
     }
     res.writeHead(200, {
@@ -118,7 +152,7 @@ app.post("/api/chat", async (req, res) => {
       "Cache-Control": "no-cache, no-transform",
       "X-Accel-Buffering": "no"
     });
-    await streamText(r, res);
+    await streamText(r, res, extract);
     res.end();
   } catch (err) {
     console.error(err);
