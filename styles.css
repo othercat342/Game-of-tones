@@ -11,7 +11,8 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--sky);outline-offset:3px}
 
 .top{display:flex;justify-content:space-between;align-items:center;padding:1rem clamp(1rem,5vw,4rem);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--ink);z-index:5}
-.brand{font-weight:800;font-size:1.5rem;text-decoration:none;color:var(--lemon)}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{display:block;height:2.6rem;width:auto}
 
 main{max-width:68rem;margin:0 auto;padding:0 clamp(1rem,5vw,2rem)}
 .hero{padding:clamp(3rem,10vw,7rem) 0 3rem}
