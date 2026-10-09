@@ -168,6 +168,8 @@ app.post("/api/chat", async (req, res) => {
 app.use(express.static(path.join(__dirname)));
 
 app.get("*", (req, res) => {
+  // Si piden un archivo (con extensión) que no existe, devolver 404 en vez de index.html
+  if (path.extname(req.path)) return res.status(404).send("No encontrado: " + req.path);
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
