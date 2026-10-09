@@ -1,9 +1,14 @@
+<p align="center">
+  <img src="assets/logo-claro.png" alt="Surco Aprende" width="480">
+</p>
+
 # Surco · Música para meterse adentro
 
 Página para aprender las 7 notas, tocar un piano virtual, practicar (acordes, metrónomo, afinador, progresiones), conocer artistas de Argentina y Uruguay y charlar con Cuartetito, un guía con IA.
 
 ## Archivos
 
+- `assets/`: logo (versiones para fondo oscuro y claro), ícono y favicon
 - `index.html`: página principal
 - `styles.css`: estilos
 - `data.js`: **datos de los artistas** (bio, géneros, línea de tiempo y canciones)
